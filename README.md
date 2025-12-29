@@ -255,4 +255,8 @@ npm test
 5. **Deploy updates:** Run `npm run deploy` in lambda folder
 
 
+## Todo
+- Create new functions that will save and return user stats
+- Add authorization
+- Create unlimited mode
 
