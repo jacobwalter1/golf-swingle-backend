@@ -1,0 +1,16 @@
+{
+	"name": "golf-swingle-scripts",
+	"version": "1.0.0",
+	"description": "Utility scripts for Golf Swingle",
+	"type": "module",
+	"scripts": {
+		"sync": "node hasVideosScript.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@aws-sdk/client-s3": "^3.705.0",
+		"dotenv": "^17.2.3"
+	}
+}
