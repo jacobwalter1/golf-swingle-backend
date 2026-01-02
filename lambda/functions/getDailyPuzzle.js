@@ -2,6 +2,8 @@ import { db } from "./shared/dbClient.js";
 import { getTodayDate, fetchGolfers } from "./shared/gameLogic.js";
 
 export const handler = async (event) => {
+
+	const date = event.queryStringParameters?.date || getTodayDate();
 	// Handle CORS preflight
 	if (event.requestContext?.http?.method === "OPTIONS" || event.httpMethod === "OPTIONS") {
 		return {
@@ -15,7 +17,6 @@ export const handler = async (event) => {
 		};
 	}
 
-	const date = getTodayDate();
 	console.log(`Fetching daily puzzle for date: ${date}`);
 
 	try {
@@ -47,7 +48,8 @@ export const handler = async (event) => {
 			throw new Error("No golfers available to create a daily puzzle.");
 		}
 		const alreadyUsedGolferIds = await db.getAllPuzzleGolferIds();
-		let availableGolfers = videoGolfers.filter((golfer) => !alreadyUsedGolferIds.includes(golfer.id));
+		let availableGolfers = videoGolfers.filter((golfer) => !alreadyUsedGolferIds.includes(golfer.playerId));
+		console.log(`Filtered to ${availableGolfers.length} golfers not used yet.`);
 		if (availableGolfers.length === 0) {
 			console.log("All golfers used, resetting pool");
 			availableGolfers = videoGolfers;

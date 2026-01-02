@@ -61,12 +61,7 @@ async function deployFunction(functionName) {
 
 	try {
 		const envVars = {
-			REGION: process.env.REGION || "us-east-1",
-			S3_BUCKET: process.env.S3_BUCKET,
-			S3_GOLFERS_URL: process.env.S3_GOLFERS_URL,
-			DYNAMODB_PUZZLES_TABLE: process.env.DYNAMODB_PUZZLES_TABLE,
-			DYNAMODB_USER_STATS_TABLE: process.env.DYNAMODB_USER_STATS_TABLE,
-			DYNAMODB_USER_GAMES_TABLE: process.env.DYNAMODB_USER_GAMES_TABLE,
+			REGION: "us-east-1",
 		};
 
 		// Check if function exists
